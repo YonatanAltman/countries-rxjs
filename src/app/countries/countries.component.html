@@ -1,0 +1,20 @@
+<h2>{{ title }}</h2>
+<h3>{{ loader$|async }}</h3>
+<button (click)="syncCountries()" [disabled]="loader$|async">
+  @if (loader$|async) {
+    Loading...
+  } @else {
+    Sync countries
+  }
+</button>
+@if (loader$|async) {
+  <h2>🫣</h2>
+} @else {
+  <h2>✅</h2>
+}
+
+<div class="list">
+  @for (c of countries$|async; track c.name) {
+    <div>{{ c.name }}</div>
+  }
+</div>
